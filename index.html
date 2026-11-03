@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>115學年度 康軒版三年級上學期自然 — 全四單元互動教學網頁</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Noto Sans TC', sans-serif;
+    background: #f0f4f8;
+    color: #22303c;
+    line-height: 1.6;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+  header.site-header {
+    background: linear-gradient(135deg, #1f4e79 0%, #2e86ab 100%);
+    color: #fff;
+    padding: 34px 0 44px;
+    text-align: center;
+  }
+  header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.45);
+    color: #ffeeba;
+    padding: 7px 16px;
+    border-radius: 22px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    font-weight: 800;
+  }
+  header h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 900; letter-spacing: 0.5px; line-height:1.25; }
+  header .subtitle { margin: 0 0 10px; font-size: 1.08rem; opacity: 0.96; max-width: 880px; margin-left: auto; margin-right: auto; line-height:1.5; }
+  header .instr { margin: 0; font-size: 0.95rem; opacity: 0.92; max-width: 860px; margin-left: auto; margin-right: auto; }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 40;
+    background: #fff;
+    border-bottom: 2px solid #c9d6e3;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  nav.tabs .tabbar { display: flex; gap: 0; }
+  nav.tabs button.tab {
+    flex: 1 1 auto; min-width: 150px; text-align: center;
+    background: none; border: none; border-bottom: 4px solid transparent;
+    padding: 15px 8px 12px; font-size: 0.95rem; font-weight: 800;
+    color: #5a6b7d; cursor: pointer; outline: none; transition: all .2s;
+    white-space: nowrap;
+  }
+  nav.tabs button.tab:hover { background: #eef4fb; color: #1f4e79; }
+  nav.tabs button.tab.active { color: #1f4e79; border-bottom-color: #1f4e79; background: #f4f8fb; }
+
+  main { padding: 26px 0 80px; min-height: 70vh; }
+  section.panel { display: none; animation: fadeIn .4s ease; }
+  section.panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+
+  /* Homepage */
+  .home-intro { background: #fff; border: 1px solid #d7dde5; border-radius: 14px; padding: 24px; margin-bottom: 26px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .home-intro h2 { margin: 0 0 10px; font-size: 1.45rem; color: #1f4e79; }
+  .home-intro p { margin: 6px 0; font-size: 0.98rem; color: #3d5266; }
+  .usage { background: #eef4fb; border-left: 6px solid #1f4e79; padding: 16px 20px; border-radius: 10px; margin-top: 18px; font-size: 0.95rem; color: #3d5266; }
+  .usage b { color: #1f4e79; }
+
+  .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 10px; }
+  .unit-card { background: #fff; border: 1px solid #d7dde5; border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
+  .unit-card .emoji { font-size: 2.1rem; display: block; margin-bottom: 10px; }
+  .unit-card h3 { margin: 0 0 8px; font-size: 1.08rem; color: #1f4e79; line-height:1.35; }
+  .unit-card p { margin: 0; font-size: 0.88rem; color: #5a6b7d; line-height:1.45; }
+
+  /* Unit header */
+  .unit-head { background: #fff; border: 1px solid #d7dde5; border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .unit-head h2 { margin: 0 0 7px; font-size: 1.55rem; color: #1f4e79; }
+  .unit-head .unit-desc { margin: 0; color: #5a6b7d; font-size: 1rem; }
+
+  /* Sub tabs */
+  .unit-tabs { display: flex; gap: 0; border-bottom: 1px solid #d7dde5; margin-bottom: 12px; overflow-x: auto; }
+  .unit-tabs button.utab {
+    background: none; border: none; border-bottom: 3px solid transparent; padding: 10px 16px;
+    font-size: 0.93rem; font-weight: 800; color: #5a6b7d; cursor: pointer; outline: none; white-space: nowrap;
+    transition: .2s;
+  }
+  .unit-tabs button.utab:hover { background: #f4f7fa; color: #1f4e79; }
+  .unit-tabs button.utab.active { color: #1f4e79; border-bottom-color: #2e86ab; background: #f4f8fb; }
+
+  .upane { display: none; }
+  .upane.active { display: block; }
+
+  h3.sec { font-size: 1.18rem; color: #1f4e79; border-left: 5px solid #2e86ab; padding-left: 12px; margin: 26px 0 12px; }
+  h3.sec:first-child { margin-top: 0; }
+  ol { margin: 8px 0 12px; padding-left: 24px; }
+  ul { margin: 8px 0 12px; padding-left: 22px; }
+  li { margin: 5px 0; }
+
+  .step { display: inline-block; background: #2e86ab; color: #fff; border-radius: 50%; width: 26px; height: 26px; line-height: 26px; text-align: center; font-weight: bold; font-size: 0.85rem; margin-right: 8px; }
+
+  /* Figures */
+  .figure { background: #fff; border: 1px solid #d7dde5; border-radius: 12px; padding: 18px; margin: 16px 0; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.03); }
+  .figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  .figcap { margin-top: 9px; font-size: 0.88rem; color: #5a6b7d; font-style: italic; }
+
+  /* Callouts */
+  .tip { background: #fff8e1; border-left: 5px solid #f39c12; padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; font-size: 0.96rem; }
+  .tip b { color: #b7791f; }
+  .keybox { background: #e8f5e9; border-left: 5px solid #2ecc71; padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; font-size: 0.96rem; }
+  .keybox b { color: #1e7a46; }
+  .warnbox { background: #fdecea; border-left: 5px solid #e74c3c; padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; font-size: 0.96rem; }
+  .warnbox b { color: #c0392b; }
+
+  /* Review interactions */
+  .review { background: #fff; border: 1px solid #d7dde5; border-radius: 12px; padding: 18px 24px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .review h4 { margin: 0 0 8px; color: #1f4e79; font-size: 1.05rem; }
+  .review p { margin: 6px 0 14px; font-size: 0.95rem; color: #3d5266; }
+  .dd-area { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0 6px; }
+  .dd-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #fff; border: 2px solid #2e86ab; color: #1f4e79; border-radius: 10px; padding: 8px 14px; font-weight: 800; font-size: 0.95rem;
+    cursor: grab; user-select: none; box-shadow: 0 2px 6px rgba(46,134,171,.14);
+  }
+  .dd-item:active { cursor: grabbing; }
+  .dd-item.dragging { opacity: .72; border-color: #f39c12; }
+  .dd-item.correct { border-color: #2ecc71; background: #e8f5e9; }
+  .dd-item.wrong { animation: shake .45s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+  .dropzone {
+    border: 2px dashed #b9c6d4; border-radius: 10px; width: 158px; height: 60px; display: flex; align-items: center; justify-content: center;
+    color: #8a97a5; font-size: 0.82rem; font-weight: 800; margin: 6px; text-align: center; transition: .2s; line-height:1.35;
+  }
+  .dropzone.correct { border-style: solid; border-color: #2ecc71; background: #e8f5e9; color: #1e7a46; }
+  .dropzone.wrong { border-color: #e74c3c; background: #fdecea; color: #c0392b; }
+
+  .sort-list { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-direction: column; gap: 8px; max-width: 460px; }
+  .sort-item {
+    background: #fff; border: 2px solid #2e86ab; border-radius: 10px; padding: 10px 14px; font-weight: 800; color: #1f4e79;
+    cursor: grab; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(46,134,171,.14);
+  }
+  .sort-item:active { cursor: grabbing; }
+  .sort-item.dragging { opacity: .68; border-color: #f39c12; }
+  .sort-handle { color: #8a97a5; font-size: 1.25rem; }
+  .sorted-ok { border: 4px solid #2ecc71 !important; border-radius: 12px; }
+
+  .bin-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 14px 0; }
+  .bin {
+    border: 2px dashed #b9c6d4; border-radius: 12px; padding: 14px; min-width: 170px; flex: 1; max-width: 320px;
+    display: flex; flex-direction: column; gap: 8px; min-height: 170px;
+  }
+  .bin h5 { margin: 0 0 8px; font-size: 0.98rem; border-bottom: 1px dashed #d7dde5; padding-bottom: 6px; color: #1f4e79; }
+  .bin.correct { border-color: #2ecc71; background: #e8f5e9; }
+  .bin.wrong { border-color: #e74c3c; background: #fdecea; }
+  .bin .dd-item { margin: 4px 0; font-size: 0.9rem; width: auto; }
+
+  .btn { display: inline-block; background: #1f4e79; color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin: 6px 6px 0 0; }
+  .btn:hover { background: #163d5f; }
+  .btn.secondary { background: #8a97a5; }
+  .btn.secondary:hover { background: #6e7d8c; }
+  .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+  /* Quiz */
+  .quiz { background: #fff; border: 1px solid #d7dde5; border-radius: 12px; padding: 18px 24px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .qcard { border: 1px solid #e3e9f0; border-radius: 10px; padding: 15px 18px; margin: 12px 0; background: #fbfdff; }
+  .qcard .q { font-weight: 800; font-size: 1.02rem; color: #22303c; margin-bottom: 8px; }
+  .qcard label { display: block; margin: 5px 0; cursor: pointer; font-size: 0.99rem; padding-left: 4px; }
+  .qcard label:hover { background: #eef4fb; border-radius: 6px; padding-left: 8px; }
+  .qcard input { margin-right: 8px; accent-color: #1f4e79; }
+  .feedback { margin-top: 8px; font-size: 0.96rem; min-height: 1.35em; }
+  .feedback.ok { color: #1e7a46; font-weight: 800; }
+  .feedback.bad { color: #c0392b; font-weight: 800; }
+  .scorebox { margin-top: 16px; font-size: 1.15rem; font-weight: 900; color: #1f4e79; padding: 14px; background: #eef4fb; border-radius: 10px; text-align: center; }
+
+  footer { text-align: center; padding: 22px; color: #6b7a8a; font-size: 0.85rem; border-top: 1px solid #d7dde5; background: #fff; }
+  footer b { color: #1f4e79; }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 1.55rem; }
+    nav.tabs button.tab { padding: 13px 6px 10px; font-size: 0.82rem; min-width: 120px; }
+    .dropzone { width: 142px; height: 54px; font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <span class="badge">📚 教學版本 · 離線自含 · 圖片皆內嵌，無需網路</span>
+    <h1>國立清華大學數理教育研究所 劉品宏</h1>
+    <p class="subtitle">115 學年度 康軒版本 三年級上學期 自然課程 — 全四單元內容、學習重點、解析介紹、互動複習與互動測驗</p>
+    <p class="instr">適用對象：三年級學生、家長與新手教師│建議依序瀏覽每個單元，完成「互動複習」與「互動測驗」，錯誤題目請回到「解析介紹」複習，直到完全學會為止。</p>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="首頁與四個單元切換">
+  <div class="tabbar">
+    <button class="tab active" data-target="#home" role="tab" aria-selected="true">🏠 首頁</button>
+    <button class="tab" data-target="#unit1" role="tab" aria-selected="false">🌿 單元一 多采多姿的植物</button>
+    <button class="tab" data-target="#unit2" role="tab" aria-selected="false">💪 單元二 生活中的力</button>
+    <button class="tab" data-target="#unit3" role="tab" aria-selected="false">🌬️ 單元三 奇妙的空氣</button>
+    <button class="tab" data-target="#unit4" role="tab" aria-selected="false">🍳 單元四 廚房裡的科學</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- =================== 首頁 =================== -->
+  <section id="home" class="panel active">
+    <div class="home-intro">
+      <h2>歡迎使用本教學網頁</h2>
+      <p>本網頁依據 <strong>115 學年度康軒版本三年級上學期自然</strong> 教材架構編製，將四個單元的〈單元內容〉、〈學習重點〉、〈解析介紹〉、〈互動複習〉與〈互動測驗〉全部放在同一個 HTML 檔案裡。</p>
+      <div class="usage">
+        <b>💡 使用方式：</b><br>
+        1. 點選最上方的分頁籤，切換「首頁」與四個單元。<br>
+        2. 每個單元內有五個小分頁：「單元內容」、「學習重點」、「解析介紹」、「互動複習」、「互動測驗」。<br>
+        3. 所有圖表皆以 SVG 內嵌，<strong>不需要網路、不引用外部圖片</strong>，離線開啟即可完整顯示。<br>
+        4. 建議新手先閱讀「解析介紹」，再做「互動複習」，最後挑戰「互動測驗」，錯了就回去複習，直到全對為止。
+      </div>
+    </div>
+    <h3>🗺️ 四個單元概覽</h3>
+    <div class="home-grid">
+      <div class="unit-card">
+        <span class="emoji">🌿</span>
+        <h3>單元一：多采多姿的植物</h3>
+        <p>植物的分類、根莖葉花果實、發芽與生長、植物與環境。</p>
+      </div>
+      <div class="unit-card">
+        <span class="emoji">💪</span>
+        <h3>單元二：生活中的力</h3>
+        <p>推與拉、力的效果、接觸力與非接觸力、磁力、摩擦力與重力。</p>
+      </div>
+      <div class="unit-card">
+        <span class="emoji">🌬️</span>
+        <h3>單元三：奇妙的空氣</h3>
+        <p>空氣佔有空間、空氣有重量、空氣的壓力、空氣與燃燒呼吸。</p>
+      </div>
+      <div class="unit-card">
+        <span class="emoji">🍳</span>
+        <h3>單元四：廚房裡的科學</h3>
+        <p>固體液體氣體、狀態變化、混合與分離、酸鹼簡介。</p>
+      </div>
+    </div>
+    <div class="home-grid" style="margin-top:16px;">
+      <div class="unit-card">
+        <span class="emoji">📊</span>
+        <h3>我的測驗紀錄</h3>
+        <p id="home-scores" style="font-size:0.85rem; color:#5a6b7d;">尚未完成任何測驗。</p>
+      </div>
+      <div class="unit-card">
+        <span class="emoji">⚠️</span>
+        <h3>重要提醒</h3>
+        <p style="font-size:0.85rem; color:#5a6b7d;">本頁為教學版本，內容以教學重點為主，實際頁碼與教科書細節請以康軒版教科書為準。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 單元一：多采多姿的植物 =================== -->
+  <section id="unit1" class="panel">
+    <div class="unit-head">
+      <h2>單元一：多采多姿的植物</h2>
+      <p class="unit-desc">認識植物的多樣性，了解植物各部分與功能，以及植物如何生長與與環境互動。</p>
+    </div>
+    <div class="unit-tabs">
+      <button class="utab active" data-u="#u1-content">單元內容</button>
+      <button class="utab" data-u="#u1-points">學習重點</button>
+      <button class="utab" data-u="#u1-explain">解析介紹</button>
+      <button class="utab" data-u="#u1-review">互動複習</button>
+      <button class="utab" data-u="#u1-quiz">互動測驗</button>
+    </div>
+
+    <div id="u1-content" class="upane active">
+      <h3 class="sec">📖 單元內容：植物有哪些不同？</h3>
+      <ol>
+        <li><b>植物的多樣性：</b> 植物有各種大小、形狀與顏色，可以分為開花植物與不開花植物。</li>
+        <li><b>植物的分類（簡介）：</b> 依照有無種子，分為「種子植物」（如玉米、向日葵）與「孢子植物」（如蕨類、蘚苔類）。</li>
+        <li><b>植物各部分與功能：</b> 根（固定、吸水養分）、莖（支持、輸送）、葉（製造養分、呼吸、蒸騰）、花（生殖、結種子）、果實（保護種子、幫助散播）、種子（繁殖下一代）。</li>
+        <li><b>植物的生長變化：</b> 種子 → 發芽 → 幼苗 → 生長成株 → 開花 → 結果 → 種子散播。</li>
+        <li><b>植物與環境：</b> 植物需要陽光、水、空氣與適宜的溫度才能健康成長。</li>
+      </ol>
+    </div>
+
+    <div id="u1-points" class="upane">
+      <h3 class="sec">🎯 學習重點</h3>
+      <ul>
+        <li>能說明植物有多樣的外觀，並舉例開花植物與不開花植物。</li>
+        <li>知道植物可大致分為種子植物與孢子植物。</li>
+        <li>說明根、莖、葉、花、果實、種子各自的功能。</li>
+        <li>能依序描述植物從種子到結果的生長變化。</li>
+        <li>了解植物生長需要的條件：陽光、水、空氣、適宜溫度。</li>
+      </ul>
+    </div>
+
+    <div id="u1-explain" class="upane">
+      <h3 class="sec">🔍 解析介紹</h3>
+      <p><b>1. 植物的分類</b>：植物依照繁殖方式不同，可分為種子植物（透過種子繁殖，如稻米、蘋果樹）與孢子植物（透過孢子繁殖，如蕨類、蘚苔類，沒有花與種子）。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t1"><title id="t1">植物分類示意圖</title>
+          <rect width="660" height="340" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">植物的大分類（依繁殖方式）</text>
+          <g transform="translate(150,150)">
+            <rect x="-90" y="-30" width="180" height="60" rx="10" fill="#e3f2fd" stroke="#1f4e79" stroke-width="2.5"/>
+            <text x="0" y="2" text-anchor="middle" font-size="16" font-weight="800" fill="#1f4e79">植物</text>
+          </g>
+          <path d="M60,150 L80,180" stroke="#1f4e79" stroke-width="3" marker-end="url(#pa)"/>
+          <path d="M60,150 L80,120" stroke="#1f4e79" stroke-width="3" marker-end="url(#pa)"/>
+          <g transform="translate(120,210)">
+            <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2.5"/>
+            <text x="0" y="2" text-anchor="middle" font-size="15" font-weight="800" fill="#2e7d32">種子植物</text>
+            <text x="0" y="24" text-anchor="middle" font-size="12" fill="#2e7d32">如：稻米、玉米、向日葵、蘋果</text>
+          </g>
+          <g transform="translate(120,90)">
+            <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2.5"/>
+            <text x="0" y="2" text-anchor="middle" font-size="15" font-weight="800" fill="#e65100">孢子植物</text>
+            <text x="0" y="24" text-anchor="middle" font-size="12" fill="#e65100">如：蕨類、蘚苔類（無花無種子）</text>
+          </g>
+          <defs><marker id="pa" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f4e79"/></marker></defs>
+        </svg>
+        <div class="figcap">圖一：植物依照有無種子，大致分為種子植物與孢子植物。</div>
+      </div>
+
+      <p><b>2. 植物各部分與功能</b>：</p>
+      <div class="figure">
+        <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t2"><title id="t2">植物各部分功能圖</title>
+          <rect width="700" height="420" fill="#fbfdff"/>
+          <text x="350" y="36" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">植物各部分與功能</text>
+          <g transform="translate(350,230)">
+            <rect x="-14" y="40" width="28" height="80" fill="#5d4037"/>
+            <ellipse cx="0" cy="136" rx="46" ry="30" fill="#37474f"/>
+            <path d="M-46,80 Q0,110 46,80" fill="none" stroke="#5d4037" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-46,110 Q0,140 46,110" fill="none" stroke="#5d4037" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="-34" cy="84" rx="16" ry="10" fill="#4e342e" opacity=".7"/>
+            <ellipse cx="34" cy="114" rx="16" ry="10" fill="#4e342e" opacity=".7"/>
+            <text x="0" y="178" text-anchor="middle" font-size="16" font-weight="800" fill="#37474f">根</text>
+            <text x="0" y="200" text-anchor="middle" font-size="12.5" fill="#5a6b7d">固定、吸水養分</text>
+          </g>
+          <g transform="translate(350,150)">
+            <rect x="-8" y="0" width="16" height="82" fill="#795548"/>
+            <ellipse cx="0" cy="-6" rx="30" ry="14" fill="#4caf50"/>
+            <text x="0" y="32" text-anchor="middle" font-size="16" font-weight="800" fill="#2e7d32">莖</text>
+            <text x="0" y="54" text-anchor="middle" font-size="12.5" fill="#5a6b7d">支持、輸送養分</text>
+          </g>
+          <g transform="translate(225,100)">
+            <path d="M-30,-8 Q0,-42 30,-8 Q0,10 -30,-8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+            <path d="M-34,2 Q0,-28 34,2 Q0,16 -34,2" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+            <text x="0" y="34" text-anchor="middle" font-size="15" font-weight="800" fill="#2e7d32">葉</text>
+            <text x="0" y="56" text-anchor="middle" font-size="12.5" fill="#5a6b7d">製造養分</text>
+          </g>
+          <g transform="translate(350,48)">
+            <circle cx="0" cy="0" r="22" fill="#ffab40" stroke="#e65100" stroke-width="3"/>
+            <path d="M-14,-6 Q0,-20 14,-6" fill="none" stroke="#e65100" stroke-width="3" stroke-linecap="round"/>
+            <text x="0" y="38" text-anchor="middle" font-size="15" font-weight="800" fill="#e65100">花</text>
+            <text x="0" y="60" text-anchor="middle" font-size="12.5" fill="#5a6b7d">產生種子</text>
+          </g>
+          <g transform="translate(460,120)">
+            <path d="M0,-26 Q-24,-4 0,18 Q24,-4 0,-26" fill="#ff7043" stroke="#e65100" stroke-width="2"/>
+            <circle cx="0" cy="0" r="10" fill="#4e342e"/>
+            <text x="0" y="32" text-anchor="middle" font-size="15" font-weight="800" fill="#e65100">果實</text>
+            <text x="0" y="54" text-anchor="middle" font-size="12.5" fill="#5a6b7d">保護種子</text>
+          </g>
+          <g transform="translate(520,200)">
+            <ellipse cx="0" cy="0" rx="14" ry="9" fill="#4e342e"/>
+            <text x="0" y="28" text-anchor="middle" font-size="15" font-weight="800" fill="#4e342e">種子</text>
+            <text x="0" y="50" text-anchor="middle" font-size="12.5" fill="#5a6b7d">繁殖下一代</text>
+          </g>
+        </svg>
+        <div class="figcap">圖二：根、莖、葉、花、果實、種子各有不同功能。</div>
+      </div>
+
+      <p><b>3. 植物生長的變化</b>：種子在適宜條件下發芽，長成幼苗，再生長成株，開花後結果，種子散播後又可長成新植株，形成生命週期。</p>
+      <div class="figure">
+        <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t3"><title id="t3">植物生命週期</title>
+          <rect width="720" height="300" fill="#fbfdff"/>
+          <text x="360" y="32" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">植物生命週期</text>
+          <g transform="translate(70,140)">
+            <ellipse cx="0" cy="0" rx="26" ry="20" fill="#8d6e63" stroke="#4e342e" stroke-width="2"/>
+            <text x="0" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#4e342e">種子</text>
+          </g>
+          <path d="M96,160 L124,160" stroke="#1f4e79" stroke-width="3" marker-end="url(#ga)"/>
+          <g transform="translate(140,130)">
+            <path d="M0,-14 Q-12,10 0,24 Q12,10 0,-14" fill="#2e7d32"/>
+            <rect x="-6" y="24" width="12" height="22" fill="#5d4037"/>
+            <text x="0" y="60" text-anchor="middle" font-size="13" font-weight="800" fill="#2e7d32">發芽</text>
+          </g>
+          <path d="M166,152 L194,152" stroke="#1f4e79" stroke-width="3" marker-end="url(#ga)"/>
+          <g transform="translate(210,115)">
+            <rect x="-8" y="22" width="16" height="28" fill="#5d4037"/>
+            <ellipse cx="0" cy="10" rx="22" ry="16" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <text x="0" y="48" text-anchor="middle" font-size="13" font-weight="800" fill="#2e7d32">幼苗</text>
+          </g>
+          <path d="M236,143 L264,143" stroke="#1f4e79" stroke-width="3" marker-end="url(#ga)"/>
+          <g transform="translate(280,90)">
+            <rect x="-10" y="36" width="20" height="40" fill="#5d4037"/>
+            <ellipse cx="0" cy="24" rx="30" ry="24" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+            <path d="M-18,8 Q0,-12 18,8" fill="none" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+            <text x="0" y="62" text-anchor="middle" font-size="13" font-weight="800" fill="#2e7d32">成株</text>
+          </g>
+          <path d="M306,114 L334,114" stroke="#1f4e79" stroke-width="3" marker-end="url(#ga)"/>
+          <g transform="translate(350,100)">
+            <rect x="-8" y="30" width="16" height="42" fill="#5d4037"/>
+            <ellipse cx="0" cy="22" rx="26" ry="20" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+            <circle cx="0" cy="-6" r="10" fill="#ffab40" stroke="#e65100" stroke-width="2"/>
+            <text x="0" y="64" text-anchor="middle" font-size="13" font-weight="800" fill="#e65100">開花結果</text>
+          </g>
+          <defs><marker id="ga" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f4e79"/></marker></defs>
+        </svg>
+        <div class="figcap">圖三：種子 → 發芽 → 幼苗 → 成株 → 開花結果。</div>
+      </div>
+
+      <div class="keybox"><b>🌱 植物生長需要的條件：</b> 陽光、水、空氣與適宜的溫度，缺一不可。種子發芽剛開始不需要陽光，但長出葉片後就需要陽光進行光合作用。</div>
+    </div>
+
+    <div id="u1-review" class="upane">
+      <div class="review">
+        <h4>🌰 互動複習 1：植物分類</h4>
+        <p>把植物拖到對應的分類。</p>
+        <div class="dd-area" id="src-u1r1">
+          <span class="dd-item" data-id="u1a1" data-src="src-u1r1">稻米</span>
+          <span class="dd-item" data-id="u1a2" data-src="src-u1r1">向日葵</span>
+          <span class="dd-item" data-id="u1a3" data-src="src-u1r1">蕨類</span>
+          <span class="dd-item" data-id="u1a4" data-src="src-u1r1">蘚苔類</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u1z1">種子植物</div>
+          <div class="dropzone" data-id="u1z2">孢子植物</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u1r1')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u1r1')">重置</button>
+        </div>
+        <div id="msg-u1r1" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>🌿 互動複習 2：植物部分與功能</h4>
+        <p>把植物部分拖到對應的功能。</p>
+        <div class="dd-area" id="src-u1r2">
+          <span class="dd-item" data-id="u1b1" data-src="src-u1r2">根</span>
+          <span class="dd-item" data-id="u1b2" data-src="src-u1r2">莖</span>
+          <span class="dd-item" data-id="u1b3" data-src="src-u1r2">葉</span>
+          <span class="dd-item" data-id="u1b4" data-src="src-u1r2">花</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u1z3">固定與吸水養分</div>
+          <div class="dropzone" data-id="u1z4">支持與輸送</div>
+          <div class="dropzone" data-id="u1z5">在陽光下製造養分</div>
+          <div class="dropzone" data-id="u1z6">產生種子</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u1r2')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u1r2')">重置</button>
+        </div>
+        <div id="msg-u1r2" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>📈 互動複習 3：植物生長階段排序</h4>
+        <p>把階段拖曳排成從種子到結果的正確順序。</p>
+        <ul class="sort-list" id="u1slist">
+          <li class="sort-item" data-id="u1s1"><span>開花結果</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u1s2"><span>發芽</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u1s3"><span>種子</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u1s4"><span>成株</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u1s5"><span>幼苗</span><span class="sort-handle">⋮⋮</span></li>
+        </ul>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkSort('u1r3')">檢查順序</button>
+          <button class="btn secondary" onclick="resetSort('u1r3')">重置</button>
+        </div>
+        <div id="msg-u1r3" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="u1-quiz" class="upane">
+      <div class="quiz">
+        <h4>📝 互動測驗：單元一 多采多姿的植物（共 8 題）</h4>
+        <div id="u1quiz"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 單元二：生活中的力 =================== -->
+  <section id="unit2" class="panel">
+    <div class="unit-head">
+      <h2>單元二：生活中的力</h2>
+      <p class="unit-desc">認識力的概念，了解力的效果，以及接觸力與非接觸力的差別。</p>
+    </div>
+    <div class="unit-tabs">
+      <button class="utab active" data-u="#u2-content">單元內容</button>
+      <button class="utab" data-u="#u2-points">學習重點</button>
+      <button class="utab" data-u="#u2-explain">解析介紹</button>
+      <button class="utab" data-u="#u2-review">互動複習</button>
+      <button class="utab" data-u="#u2-quiz">互動測驗</button>
+    </div>
+
+    <div id="u2-content" class="upane active">
+      <h3 class="sec">📖 單元內容：力在哪裡？</h3>
+      <ol>
+        <li><b>什麼是力？</b> 力可以是「推」或「拉」，例如推門、拉抽屜、踢球。</li>
+        <li><b>力的效果：</b> 力可以改變物體的運動狀態（讓靜止物體動起來，或讓運動物體變快、變慢、改變方向），也可以改變物體的形狀（擠壓橡皮擦、拉伸橡皮筋）。</li>
+        <li><b>接觸力與非接觸力：</b> 接觸力需要兩物體接觸才能產生（如推、拉、摩擦力）；非接觸力不需要接觸（如磁力、重力）。</li>
+        <li><b>磁力：</b> 磁鐵可以吸引鐵、鎳、鈷等金屬，異極相吸、同極相斥。</li>
+        <li><b>摩擦力與重力：</b> 摩擦力會阻礙物體運動；重力讓物體向下掉落。</li>
+      </ol>
+    </div>
+
+    <div id="u2-points" class="upane">
+      <h3 class="sec">🎯 學習重點</h3>
+      <ul>
+        <li>能說明什麼是力，並舉出推與拉的例子。</li>
+        <li>說明力可以改變物體的運動狀態與形狀。</li>
+        <li>區分接觸力與非接觸力，並各舉例。</li>
+        <li>了解磁力的基本性質（異極相吸、同極相斥）。</li>
+        <li>認識摩擦力與重力在生活中的表現。</li>
+      </ul>
+    </div>
+
+    <div id="u2-explain" class="upane">
+      <h3 class="sec">🔍 解析介紹</h3>
+      <p><b>1. 推與拉</b>：力通常分為「推」與「拉」兩種方式。推開門是用力將門推離自己；拉抽屜則是將抽屜拉向自己。無論是推還是拉，都會對物體產生力。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t4"><title id="t4">推與拉示意圖</title>
+          <rect width="660" height="320" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">力可以是「推」或「拉」</text>
+          <g transform="translate(180,170)">
+            <rect x="-40" y="-40" width="80" height="50" fill="#b3d9ff" stroke="#1f4e79" stroke-width="3" rx="6"/>
+            <text x="0" y="-12" text-anchor="middle" font-size="15" fill="#1f4e79" font-weight="800">箱子</text>
+            <path d="M-70,0 L-30,0" stroke="#e74c3c" stroke-width="5" stroke-linecap="round" marker-end="url(#pa2)"/>
+            <text x="-85" y="8" text-anchor="middle" font-size="14" fill="#e74c3c" font-weight="800">推</text>
+            <text x="0" y="34" text-anchor="middle" font-size="13" fill="#5a6b7d">推開箱子</text>
+          </g>
+          <g transform="translate(480,170)">
+            <rect x="-40" y="-40" width="80" height="50" fill="#b3d9ff" stroke="#1f4e79" stroke-width="3" rx="6"/>
+            <text x="0" y="-12" text-anchor="middle" font-size="15" fill="#1f4e79" font-weight="800">箱子</text>
+            <path d="M70,0 L30,0" stroke="#2e86ab" stroke-width="5" stroke-linecap="round" marker-end="url(#pa2)"/>
+            <text x="85" y="8" text-anchor="middle" font-size="14" fill="#2e86ab" font-weight="800">拉</text>
+            <text x="0" y="34" text-anchor="middle" font-size="13" fill="#5a6b7d">拉開抽屜</text>
+          </g>
+          <defs><marker id="pa2" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f4e79"/></marker></defs>
+        </svg>
+        <div class="figcap">圖四：推與拉都是力的常見表現。</div>
+      </div>
+
+      <p><b>2. 力的效果：改變運動與形狀</b>：踢球可以讓靜止的球動起來（改變運動）；接住飛來的球可以讓球變慢或停止；擠壓橡皮擦會改變形狀；拉伸橡皮筋也會改變形狀。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t5"><title id="t5">力改變形狀示意圖</title>
+          <rect width="660" height="300" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">力可以改變物體形狀</text>
+          <g transform="translate(180,160)">
+            <rect x="-30" y="-20" width="60" height="40" fill="#f4c2c2" stroke="#d32f2f" stroke-width="3" rx="6"/>
+            <text x="0" y="4" text-anchor="middle" font-size="15" fill="#d32f2f" font-weight="800">橡皮擦</text>
+            <text x="0" y="30" text-anchor="middle" font-size="13" fill="#5a6b7d">原形狀</text>
+          </g>
+          <g transform="translate(480,160)">
+            <path d="M-30,-20 L30,-20 L20,20 L-20,20 Z" fill="#f4c2c2" stroke="#d32f2f" stroke-width="3"/>
+            <text x="0" y="42" text-anchor="middle" font-size="13" fill="#d32f2f" font-weight="800">被擠壓後變扁</text>
+          </g>
+          <path d="M240,180 L260,180" stroke="#1f4e79" stroke-width="3" marker-end="url(#pa3)"/>
+          <defs><marker id="pa3" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f4e79"/></marker></defs>
+        </svg>
+        <div class="figcap">圖五：擠壓橡皮擦，力改變了它的形狀。</div>
+      </div>
+
+      <p><b>3. 接觸力與非接觸力</b>：接觸力需要兩物體「接觸」才能產生力，例如推桌子、拉繩子、摩擦力。非接觸力則不需要接觸，例如磁力吸鐵釘、地球的重力讓蘋果掉下來。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t6"><title id="t6">接觸力與非接觸力分類</title>
+          <rect width="660" height="340" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">接觸力 vs 非接觸力</text>
+          <g transform="translate(180,170)">
+            <rect x="-80" y="-30" width="160" height="60" rx="10" fill="#e3f2fd" stroke="#1f4e79" stroke-width="2.5"/>
+            <text x="0" y="4" text-anchor="middle" font-size="16" font-weight="800" fill="#1f4e79">接觸力（需接觸）</text>
+            <text x="0" y="28" text-anchor="middle" font-size="13" fill="#5a6b7d">推、拉、摩擦力</text>
+          </g>
+          <g transform="translate(480,170)">
+            <rect x="-80" y="-30" width="160" height="60" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2.5"/>
+            <text x="0" y="4" text-anchor="middle" font-size="16" font-weight="800" fill="#e65100">非接觸力（不需接觸）</text>
+            <text x="0" y="28" text-anchor="middle" font-size="13" fill="#e65100">磁力、重力</text>
+          </g>
+        </svg>
+        <div class="figcap">圖六：力可分為接觸力與非接觸力。</div>
+      </div>
+
+      <div class="keybox"><b>🧲 磁力小知識：</b> 磁鐵有 N 極與 S 極兩極，異極相吸（N-S）、同極相斥（N-N、S-S）。磁力可以穿過紙張、木頭等物質傳遞。</div>
+    </div>
+
+    <div id="u2-review" class="upane">
+      <div class="review">
+        <h4>👉 互動複習 1：推或拉？</h4>
+        <p>把動作拖到「推」或「拉」。</p>
+        <div class="dd-area" id="src-u2r1">
+          <span class="dd-item" data-id="u2a1" data-src="src-u2r1">推開門</span>
+          <span class="dd-item" data-id="u2a2" data-src="src-u2r1">拉抽屜</span>
+          <span class="dd-item" data-id="u2a3" data-src="src-u2r1">踢球</span>
+          <span class="dd-item" data-id="u2a4" data-src="src-u2r1">拉繩子</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u2z1">推</div>
+          <div class="dropzone" data-id="u2z2">拉</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u2r1')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u2r1')">重置</button>
+        </div>
+        <div id="msg-u2r1" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>🔗 互動複習 2：接觸力與非接觸力</h4>
+        <p>把力的類型拖到對應的分類。</p>
+        <div class="dd-area" id="src-u2r2">
+          <span class="dd-item" data-id="u2b1" data-src="src-u2r2">推桌子</span>
+          <span class="dd-item" data-id="u2b2" data-src="src-u2r2">磁鐵吸鐵釘</span>
+          <span class="dd-item" data-id="u2b3" data-src="src-u2r2">摩擦力</span>
+          <span class="dd-item" data-id="u2b4" data-src="src-u2r2">地球重力</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u2z3">接觸力</div>
+          <div class="dropzone" data-id="u2z4">非接觸力</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u2r2')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u2r2')">重置</button>
+        </div>
+        <div id="msg-u2r2" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>⚖️ 互動複習 3：力的效果排序</h4>
+        <p>把「力改變物體」的例子依生活中常見程度排序（參考答案無絕對正確，以觀察為主）。</p>
+        <ul class="sort-list" id="u2slist">
+          <li class="sort-item" data-id="u2s1"><span>改變形狀（擠壓橡皮擦）</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u2s2"><span>讓靜止物體動起來（踢球）</span><span class="sort-handle">⋮⋮</span></li>
+          <li class="sort-item" data-id="u2s3"><span>讓運動物體停止（接球）</span><span class="sort-handle">⋮⋮</span></li>
+        </ul>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkSort('u2r3')">檢查順序</button>
+          <button class="btn secondary" onclick="resetSort('u2r3')">重置</button>
+        </div>
+        <div id="msg-u2r3" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="u2-quiz" class="upane">
+      <div class="quiz">
+        <h4>📝 互動測驗：單元二 生活中的力（共 8 題）</h4>
+        <div id="u2quiz"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 單元三：奇妙的空氣 =================== -->
+  <section id="unit3" class="panel">
+    <div class="unit-head">
+      <h2>單元三：奇妙的空氣</h2>
+      <p class="unit-desc">認識空氣的性質，了解空氣佔有空間、有重量、有壓力，以及空氣與燃燒、呼吸的關係。</p>
+    </div>
+    <div class="unit-tabs">
+      <button class="utab active" data-u="#u3-content">單元內容</button>
+      <button class="utab" data-u="#u3-points">學習重點</button>
+      <button class="utab" data-u="#u3-explain">解析介紹</button>
+      <button class="utab" data-u="#u3-review">互動複習</button>
+      <button class="utab" data-u="#u3-quiz">互動測驗</button>
+    </div>
+
+    <div id="u3-content" class="upane active">
+      <h3 class="sec">📖 單元內容：空氣有什麼神奇之處？</h3>
+      <ol>
+        <li><b>空氣佔有空間：</b> 空氣雖然看不見，但它佔有空間。例如在紙杯底打孔、把紙杯倒扣進水中，紙不會濕。</li>
+        <li><b>空氣有重量：</b> 空氣本身有重量，兩邊平衡的天平，一邊放入充滿空氣的氣球後會偏低。</li>
+        <li><b>空氣的壓力：</b> 空氣會對四周施加壓力，例如吸管喝飲料、吸盤吸住桌面。</li>
+        <li><b>空氣的成分（簡介）：</b> 空氣主要包含氮氣、氧氣、二氧化碳等氣體。</li>
+        <li><b>空氣與燃燒、呼吸：</b> 燃燒需要氧氣，人與動物呼吸也需要氧氣並排出二氧化碳。</li>
+      </ol>
+    </div>
+
+    <div id="u3-points" class="upane">
+      <h3 class="sec">🎯 學習重點</h3>
+      <ul>
+        <li>能說明空氣佔有空間，並舉出實驗例子。</li>
+        <li>了解空氣有重量，能進行簡單比較實驗。</li>
+        <li>說明空氣會產生壓力，並舉生活例子（吸管、吸盤）。</li>
+        <li>知道空氣中含有氧氣，燃燒與呼吸都需要氧氣。</li>
+        <li>了解植物透過光合作用製造氧氣，與動物呼吸形成平衡。</li>
+      </ul>
+    </div>
+
+    <div id="u3-explain" class="upane">
+      <h3 class="sec">🔍 解析介紹</h3>
+      <p><b>1. 空氣佔有空間</b>：空氣看不見摸不著，但它確實佔有空間。經典實驗：將一張紙塞進杯底，杯子倒扣直插入水中，杯內的空氣阻擋水進入，紙不會濕，證明空氣佔據了杯內空間。</p>
+      <div class="figure">
+        <svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t7"><title id="t7">空氣佔有空間實驗</title>
+          <rect width="620" height="340" fill="#fbfdff"/>
+          <text x="310" y="36" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">倒扣紙杯進水，紙不會濕</text>
+          <g transform="translate(310,200)">
+            <path d="M-50,-40 Q0,-60 50,-40 L60,60 L-60,60 Z" fill="#b3d9ff" stroke="#1f4e79" stroke-width="2"/>
+            <rect x="-40" y="-36" width="80" height="80" fill="none" stroke="#1f4e79" stroke-width="3"/>
+            <text x="0" y="20" text-anchor="middle" font-size="14" fill="#1f4e79" font-weight="800">紙</text>
+            <text x="0" y="-55" text-anchor="middle" font-size="13" fill="#5a6b7d">杯內有空氣</text>
+          </g>
+          <g transform="translate(310,60)">
+            <rect x="-60" y="0" width="120" height="10" fill="#78909c"/>
+            <text x="0" y="-15" text-anchor="middle" font-size="14" fill="#1f4e79" font-weight="800">水面</text>
+          </g>
+          <path d="M310,100 Q330,80 350,100" fill="none" stroke="#1f4e79" stroke-width="3" stroke-linecap="round"/>
+          <text x="350" y="112" text-anchor="middle" font-size="13" fill="#1f4e79" font-weight="800">空氣阻擋水</text>
+        </svg>
+        <div class="figcap">圖七：空氣佔據杯內空間，水進不去，紙就不會濕。</div>
+      </div>
+
+      <p><b>2. 空氣有重量</b>：雖然空氣很輕，但累積起來就有重量。實驗中，天平兩端平衡，將一邊的氣球充滿空氣，該邊會下降，證明空氣有重量。</p>
+      <p><b>3. 空氣的壓力</b>：空氣包圍著地球，對物體施加壓力。吸管喝飲料時，吸管內空氣被吸走，外面的大氣壓力把飲料推進吸管；吸盤吸住桌面，也是利用空氣壓力差。</p>
+      <div class="figure">
+        <svg viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t8"><title id="t8">吸管喝飲料示意圖</title>
+          <rect width="620" height="300" fill="#fbfdff"/>
+          <text x="310" y="36" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">空氣壓力把飲料推進吸管</text>
+          <g transform="translate(200,150)">
+            <rect x="-10" y="-80" width="20" height="90" fill="#e3f2fd" stroke="#1f4e79" stroke-width="2"/>
+            <rect x="-10" y="-60" width="20" height="20" fill="#ffd93d" stroke="#f39c12" stroke-width="2"/>
+            <text x="0" y="40" text-anchor="middle" font-size="14" fill="#1f4e79" font-weight="800">飲料上升</text>
+          </g>
+          <g transform="translate(420,150)">
+            <rect x="-40" y="-80" width="80" height="90" fill="#e3f2fd" stroke="#1f4e79" stroke-width="2"/>
+            <rect x="-40" y="-60" width="80" height="10" fill="#ffd93d" stroke="#f39c12" stroke-width="2"/>
+            <text x="0" y="40" text-anchor="middle" font-size="14" fill="#1f4e79" font-weight="800">飲料面下降</text>
+          </g>
+          <path d="M220,70 L400,70" stroke="#1f4e79" stroke-width="3" stroke-dasharray="6,6"/>
+          <text x="310" y="60" text-anchor="middle" font-size="13" fill="#5a6b7d">大氣壓力</text>
+        </svg>
+        <div class="figcap">圖八：吸管內外空氣壓力差，使飲料被推進吸管。</div>
+      </div>
+
+      <p><b>4. 空氣與燃燒、呼吸</b>：蠟燭燃燒需要氧氣，罩上玻璃杯後氧氣耗盡，蠟燭就會熄滅。人與動物呼吸也會吸入氧氣、呼出二氧化碳；植物則透過光合作用製造氧氣。</p>
+      <div class="keybox"><b>🌱 空氣循環：</b> 動物呼吸吸入氧氣、呼出二氧化碳；植物光合作用吸收二氧化碳、釋出氧氣。兩者共同維持空氣中氧氣與二氧化碳的平衡。</div>
+    </div>
+
+    <div id="u3-review" class="upane">
+      <div class="review">
+        <h4>🥤 互動複習 1：空氣的性質</h4>
+        <p>把現象拖到對應的空氣性質。</p>
+        <div class="dd-area" id="src-u3r1">
+          <span class="dd-item" data-id="u3a1" data-src="src-u3r1">倒扣紙杯進水，紙不濕</span>
+          <span class="dd-item" data-id="u3a2" data-src="src-u3r1">充滿空氣的氣球讓天平偏低</span>
+          <span class="dd-item" data-id="u3a3" data-src="src-u3r1">吸管喝飲料</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u3z1">空氣佔有空間</div>
+          <div class="dropzone" data-id="u3z2">空氣有重量</div>
+          <div class="dropzone" data-id="u3z3">空氣有壓力</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u3r1')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u3r1')">重置</button>
+        </div>
+        <div id="msg-u3r1" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>🕯️ 互動複習 2：燃燒與呼吸</h4>
+        <p>把敘述拖到正確的主題。</p>
+        <div class="dd-area" id="src-u3r2">
+          <span class="dd-item" data-id="u3b1" data-src="src-u3r2">需要氧氣才能燃燒</span>
+          <span class="dd-item" data-id="u3b2" data-src="src-u3r2">吸入氧氣、呼出二氧化碳</span>
+          <span class="dd-item" data-id="u3b3" data-src="src-u3r2">植物釋出氧氣</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u3z4">燃燒</div>
+          <div class="dropzone" data-id="u3z5">動物呼吸</div>
+          <div class="dropzone" data-id="u3z6">植物光合作用</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u3r2')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u3r2')">重置</button>
+        </div>
+        <div id="msg-u3r2" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="u3-quiz" class="upane">
+      <div class="quiz">
+        <h4>📝 互動測驗：單元三 奇妙的空氣（共 8 題）</h4>
+        <div id="u3quiz"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 單元四：廚房裡的科學 =================== -->
+  <section id="unit4" class="panel">
+    <div class="unit-head">
+      <h2>單元四：廚房裡的科學</h2>
+      <p class="unit-desc">從廚房現象認識物質的狀態、狀態變化、混合與分離，以及簡單的酸鹼概念。</p>
+    </div>
+    <div class="unit-tabs">
+      <button class="utab active" data-u="#u4-content">單元內容</button>
+      <button class="utab" data-u="#u4-points">學習重點</button>
+      <button class="utab" data-u="#u4-explain">解析介紹</button>
+      <button class="utab" data-u="#u4-review">互動複習</button>
+      <button class="utab" data-u="#u4-quiz">互動測驗</button>
+    </div>
+
+    <div id="u4-content" class="upane active">
+      <h3 class="sec">📖 單元內容：廚房裡有什麼科學？</h3>
+      <ol>
+        <li><b>固體、液體、氣體：</b> 廚房中隨處可見三態物質，例如冰塊（固體）、水（液體）、水蒸氣（氣體）。</li>
+        <li><b>物質的狀態變化：</b> 冰塊融化（固→液）、水沸騰（液→氣）、水蒸氣遇冷凝結成水滴（氣→液）。</li>
+        <li><b>水的冰點與沸點：</b> 水在 0℃ 結冰，在 100℃ 沸騰。</li>
+        <li><b>混合與分離：</b> 蒜頭與鹽混合可用篩選分開；鹽水可透過蒸發得到鹽；鐵屑與麵粉混合可用磁鐵分離。</li>
+        <li><b>酸鹼簡介：</b> 檸檬汁、醋具有酸性；小蘇打水具有鹼性；可用紫色甘藍汁作為指示劑觀察顏色變化。</li>
+      </ol>
+    </div>
+
+    <div id="u4-points" class="upane">
+      <h3 class="sec">🎯 學習重點</h3>
+      <ul>
+        <li>能舉出廚房中固體、液體、氣體的例子。</li>
+        <li>說明常見的狀態變化（融化、沸騰、凝結）。</li>
+        <li>知道水的冰點是 0℃，沸點是 100℃。</li>
+        <li>舉例生活中的混合物分離方法（篩選、蒸發、磁選）。</li>
+        <li>認識簡單的酸性與鹼性物質。</li>
+      </ul>
+    </div>
+
+    <div id="u4-explain" class="upane">
+      <h3 class="sec">🔍 解析介紹</h3>
+      <p><b>1. 三態物質與狀態變化</b>：固體有固定形狀與體積（如冰塊、餅乾）；液體體積固定但形狀隨容器改變（如水、醬油）；氣體沒有固定形狀與體積（如水蒸氣）。加熱冰塊會融化成水；水加熱到 100℃ 會沸騰變成水蒸氣；水蒸氣遇到冷鍋蓋會凝結成小水滴。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t9"><title id="t9">廚房狀態變化示意圖</title>
+          <rect width="660" height="340" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">廚房中的三態與狀態變化</text>
+          <g transform="translate(130,170)">
+            <rect x="-30" y="-20" width="60" height="40" fill="#b3d9ff" stroke="#1f4e79" stroke-width="3" rx="6"/>
+            <text x="0" y="4" text-anchor="middle" font-size="15" fill="#1f4e79" font-weight="800">冰塊</text>
+            <text x="0" y="32" text-anchor="middle" font-size="12" fill="#5a6b7d">固體</text>
+          </g>
+          <path d="M190,190 L230,190" stroke="#1f4e79" stroke-width="3" marker-end="url(#pb)"/>
+          <text x="210" y="176" text-anchor="middle" font-size="13" fill="#1e7a46" font-weight="700">融化（吸熱）</text>
+          <g transform="translate(270,170)">
+            <rect x="-30" y="-20" width="60" height="40" fill="#80d4ff" stroke="#1f4e79" stroke-width="3" rx="30"/>
+            <text x="0" y="4" text-anchor="middle" font-size="15" fill="#1f4e79" font-weight="800">水</text>
+            <text x="0" y="32" text-anchor="middle" font-size="12" fill="#5a6b7d">液體</text>
+          </g>
+          <path d="M330,190 L370,190" stroke="#1f4e79" stroke-width="3" marker-end="url(#pb)"/>
+          <text x="350" y="176" text-anchor="middle" font-size="13" fill="#1e7a46" font-weight="700">沸騰（吸熱）</text>
+          <g transform="translate(410,140)">
+            <path d="M-30,-10 Q0,-40 30,-10 Q-10,10 -30,-10" fill="#ffd966" stroke="#f39c12" stroke-width="2"/>
+            <text x="0" y="20" text-anchor="middle" font-size="15" fill="#b7791f" font-weight="800">水蒸氣</text>
+            <text x="0" y="42" text-anchor="middle" font-size="12" fill="#5a6b7d">氣體</text>
+          </g>
+          <path d="M370,230 L330,230" stroke="#1f4e79" stroke-width="3" marker-end="url(#pb)"/>
+          <text x="350" y="244" text-anchor="middle" font-size="13" fill="#c0392b" font-weight="700">凝結（放熱）</text>
+          <defs><marker id="pb" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f4e79"/></marker></defs>
+        </svg>
+        <div class="figcap">圖九：冰塊→水→水蒸氣，以及逆向的凝結。</div>
+      </div>
+
+      <p><b>2. 混合與分離</b>：廚房中常見混合物，例如鹽混在蒜頭裡，可用篩子篩選；鹽水可將水蒸發掉，留下鹽晶；鐵屑混在麵粉中，可用磁鐵把鐵屑吸出來。</p>
+      <div class="figure">
+        <svg viewBox="0 0 660 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t10"><title id="t10">混合與分離示意圖</title>
+          <rect width="660" height="300" fill="#fbfdff"/>
+          <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="800" fill="#1f4e79">常見的分離方法</text>
+          <g transform="translate(180,170)">
+            <rect x="-50" y="-30" width="100" height="50" fill="#fff" stroke="#8a97a5" stroke-width="2"/>
+            <circle cx="-20" cy="-5" r="6" fill="#8d6e63"/>
+            <circle cx="0" cy="-5" r="6" fill="#d7ccc8"/>
+            <circle cx="20" cy="-5" r="6" fill="#8d6e63"/>
+            <text x="0" y="22" text-anchor="middle" font-size="13" fill="#1f4e79" font-weight="800">篩選</text>
+          </g>
+          <g transform="translate(480,170)">
+            <rect x="-50" y="-30" width="100" height="50" fill="#fff" stroke="#8a97a5" stroke-width="2"/>
+            <path d="M-25,-10 Q0,-40 25,-10 M-25,10 Q0,40 25,10" fill="none" stroke="#d32f2f" stroke-width="3"/>
+            <circle cx="0" cy="0" r="8" fill="#d32f2f"/>
+            <text x="0" y="30" text-anchor="middle" font-size="13" fill="#1f4e79" font-weight="800">磁選</text>
+          </g>
+        </svg>
+        <div class="figcap">圖十：篩選可分開大小不同的固體；磁選可把鐵屑吸出。</div>
+      </div>
+
+      <p><b>3. 酸鹼簡介</b>：檸檬汁、醋是酸性；小蘇打水、肥皂水是鹼性。紫色甘藍汁遇酸變紅、遇鹼變綠/藍，可當作天然指示劑。</p>
+      <div class="warnbox"><b>🛡️ 安全提醒：</b> 廚房實驗請在大人陪同下進行，不要隨意嘗試不明物質，使用熱水、爐具時要特別小心，避免燙傷。</div>
+    </div>
+
+    <div id="u4-review" class="upane">
+      <div class="review">
+        <h4>🧊 互動複習 1：三態物質</h4>
+        <p>把廚房物品拖到對應的狀態。</p>
+        <div class="dd-area" id="src-u4r1">
+          <span class="dd-item" data-id="u4a1" data-src="src-u4r1">冰塊</span>
+          <span class="dd-item" data-id="u4a2" data-src="src-u4r1">水</span>
+          <span class="dd-item" data-id="u4a3" data-src="src-u4r1">水蒸氣</span>
+          <span class="dd-item" data-id="u4a4" data-src="src-u4r1">醬油</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u4z1">固體</div>
+          <div class="dropzone" data-id="u4z2">液體</div>
+          <div class="dropzone" data-id="u4z3">氣體</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u4r1')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u4r1')">重置</button>
+        </div>
+        <div id="msg-u4r1" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>🌡️ 互動複習 2：狀態變化名稱</h4>
+        <p>把變化拖到對應的說明。</p>
+        <div class="dd-area" id="src-u4r2">
+          <span class="dd-item" data-id="u4b1" data-src="src-u4r2">冰塊變水</span>
+          <span class="dd-item" data-id="u4b2" data-src="src-u4r2">水變水蒸氣</span>
+          <span class="dd-item" data-id="u4b3" data-src="src-u4r2">水蒸氣變水滴</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u4z4">融化（固→液）</div>
+          <div class="dropzone" data-id="u4z5">汽化（液→氣）</div>
+          <div class="dropzone" data-id="u4z6">液化/凝結（氣→液）</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u4r2')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u4r2')">重置</button>
+        </div>
+        <div id="msg-u4r2" class="feedback"></div>
+      </div>
+
+      <div class="review" style="margin-top:16px;">
+        <h4>🔍 互動複習 3：混合物分離方法</h4>
+        <p>把混合物拖到對應的分離方法。</p>
+        <div class="dd-area" id="src-u4r3">
+          <span class="dd-item" data-id="u4c1" data-src="src-u4r3">鹽混在蒜頭裡</span>
+          <span class="dd-item" data-id="u4c2" data-src="src-u4r3">鐵屑混在麵粉中</span>
+          <span class="dd-item" data-id="u4c3" data-src="src-u4r3">鹽水</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+          <div class="dropzone" data-id="u4z7">篩選</div>
+          <div class="dropzone" data-id="u4z8">磁選</div>
+          <div class="dropzone" data-id="u4z9">蒸發</div>
+        </div>
+        <div class="review-ctrl">
+          <button class="btn" onclick="checkDD('u4r3')">檢查答案</button>
+          <button class="btn secondary" onclick="resetDD('u4r3')">重置</button>
+        </div>
+        <div id="msg-u4r3" class="feedback"></div>
+      </div>
+    </div>
+
+    <div id="u4-quiz" class="upane">
+      <div class="quiz">
+        <h4>📝 互動測驗：單元四 廚房裡的科學（共 8 題）</h4>
+        <div id="u4quiz"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><b>國立清華大學數理教育研究所 劉品宏</b> — 教學版本<br>
+  115 學年度 康軒版本 三年級上學期 自然 全四單元互動教學網頁<br>
+  單元一 多采多姿的植物 │ 單元二 生活中的力 │ 單元三 奇妙的空氣 │ 單元四 廚房裡的科學<br>
+  所有圖表皆內嵌於本檔，離線開啟即可使用，不引用任何外部圖片或網路資源。</p>
+</footer>
+
+<script>
+(function(){
+  /* ---------- 主分頁切換 ---------- */
+  var mainTabs = document.querySelectorAll('nav.tabs .tab');
+  var panels = document.querySelectorAll('main section.panel');
+  mainTabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      mainTabs.forEach(function(x){ x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      t.classList.add('active'); t.setAttribute('aria-selected','true');
+      document.querySelector(t.dataset.target).classList.add('active');
+    });
+  });
+
+  /* ---------- 單元內小分頁切換 ---------- */
+  document.querySelectorAll('.unit-tabs .utab').forEach(function(b){
+    b.addEventListener('click', function(){
+      var unit = this.closest('.panel');
+      unit.querySelectorAll('.unit-tabs .utab').forEach(function(x){ x.classList.remove('active'); });
+      unit.querySelectorAll('.upane').forEach(function(p){ p.classList.remove('active'); });
+      this.classList.add('active');
+      unit.querySelector(this.dataset.u).classList.add('active');
+    });
+  });
+
+  /* ---------- 拖放配對（單一正確答案格） ---------- */
+  var DD = {};
+  document.querySelectorAll('.dd-item').forEach(function(it){
+    it.draggable = true;
+    it.addEventListener('dragstart', function(ev){ ev.dataTransfer.setData('text', it.dataset.id); it.classList.add('dragging'); });
+    it.addEventListener('dragend', function(){ it.classList.remove('dragging'); });
+  });
+  document.querySelectorAll('.dropzone').forEach(function(zd){
+    zd.addEventListener('dragover', function(ev){ ev.preventDefault(); });
+    zd.addEventListener('drop', function(ev){
+      ev.preventDefault();
+      var id = ev.dataTransfer.getData('text');
+      var item = document.querySelector('[data-id="'+id+'"]');
+      if(!item || item.dataset.inzone) return;
+      this.appendChild(item);
+      item.dataset.inzone = this.dataset.id;
+      item.style.display = 'inline-flex';
+      item.style.margin = '4px';
+    });
+  });
+
+  window.checkDD = function(key){
+    var spec = DD[key];
+    if(!spec) return;
+    var ok = true;
+    Object.keys(spec.expects).forEach(function(zid){
+      var zone = document.querySelector('.dropzone[data-id="'+zid+'"]');
+      if(!zone) return;
+      var kids = Array.from(zone.children).filter(function(c){ return c.classList.contains('dd-item'); }).map(function(c){ return c.dataset.id; });
+      var expect = spec.expects[zid];
+      var expectArr = Array.isArray(expect) ? expect : [expect];
+      var match = kids.length === expectArr.length && expectArr.every(function(e){ return kids.indexOf(e) >= 0; });
+      zone.classList.toggle('correct', match);
+      zone.classList.toggle('wrong', !match);
+      if(!match) ok = false;
+    });
+    var msg = document.getElementById('msg-'+key);
+    if(msg){
+      msg.textContent = ok ? '✅ 全部正確！太棒了，你完全學會了。' : '⚠️ 還有項目放錯位置，請再調整看看。';
+      msg.className = ok ? 'feedback ok' : 'feedback bad';
+    }
+  };
+  window.resetDD = function(key){
+    var spec = DD[key];
+    if(!spec) return;
+    Object.keys(spec.expects).forEach(function(zid){
+      var zone = document.querySelector('.dropzone[data-id="'+zid+'"]');
+      zone.classList.remove('correct','wrong');
+      Array.from(zone.children).filter(function(c){ return c.classList.contains('dd-item'); }).forEach(function(it){
+        var src = document.getElementById(it.dataset.src);
+        if(src) src.appendChild(it);
+        it.style.display = '';
+        it.style.margin = '';
+        delete it.dataset.inzone;
+      });
+    });
+    var msg = document.getElementById('msg-'+key);
+    if(msg){ msg.textContent = ''; msg.className = 'feedback'; }
+  };
+
+  /* ---------- 排序拖放 ---------- */
+  var SORT = {};
+  function sStart(ev){ ev.dataTransfer.setData('text', this.dataset.id); this.classList.add('dragging'); }
+  function sEnd(){ this.classList.remove('dragging'); }
+  function sOver(ev){ ev.preventDefault(); }
+  function sDrop(ev){
+    ev.preventDefault();
+    var list = this.closest('.sort-list');
+    if(!list) return;
+    var id = ev.dataTransfer.getData('text');
+    var dragged = document.querySelector('[data-id="'+id+'"]');
+    var after = getAfter(list, ev.clientY);
+    if(after) list.insertBefore(dragged, after);
+    else list.appendChild(dragged);
+  }
+  function getAfter(container, y){
+    var els = Array.from(container.querySelectorAll('.sort-item:not(.dragging)'));
+    return els.reduce(function(closest, child){
+      var box = child.getBoundingClientRect();
+      var offset = y - box.top - box.height/2;
+      if(offset < 0 && offset > closest.offset) return {offset: offset, element: child};
+      return closest;
+    }, {offset: Number.NEGATIVE_INFINITY}).element;
+  }
+  document.querySelectorAll('.sort-item').forEach(function(it){
+    it.draggable = true;
+    it.addEventListener('dragstart', sStart);
+    it.addEventListener('dragend', sEnd);
+    it.addEventListener('dragover', sOver);
+  });
+  document.querySelectorAll('.sort-list').forEach(function(ls){
+    ls.addEventListener('dragover', sOver);
+    ls.addEventListener('drop', sDrop);
+  });
+
+  window.checkSort = function(key){
+    var list = document.getElementById(key+'list');
+    if(!list) return;
+    var order = Array.from(list.children).map(function(c){ return c.dataset.id; });
+    var ok = JSON.stringify(order) === JSON.stringify(SORT[key]);
+    list.classList.toggle('sorted-ok', ok);
+    var msg = document.getElementById('msg-'+key);
+    if(msg){
+      msg.textContent = ok ? '✅ 順序全部正確！' : '⚠️ 順序不對，請再拖曳調整。';
+      msg.className = ok ? 'feedback ok' : 'feedback bad';
+    }
+  };
+  window.resetSort = function(key){
+    var list = document.getElementById(key+'list');
+    if(!list) return;
+    list.classList.remove('sorted-ok');
+    SORT[key].forEach(function(id){
+      var it = document.querySelector('[data-id="'+id+'"]');
+      if(it && it.parentElement !== list) list.appendChild(it);
+    });
+    var msg = document.getElementById('msg-'+key);
+    if(msg){ msg.textContent = ''; msg.className = 'feedback'; }
+  };
+
+  /* ---------- 互動測驗 ---------- */
+  var QUIZZES = [
+    [ // unit1 植物
+      {q:'下列哪一種植物「沒有花與種子」？', opts:['稻米','向日葵','蕨類','蘋果'], ans:2, explain:'蕨類屬於孢子植物，透過孢子繁殖，沒有花與種子。'},
+      {q:'植物哪部分主要負責「固定植株並吸收水分養分」？', opts:['葉','莖','根','花'], ans:2, explain:'根負責固定植株、吸收水分與養分。'},
+      {q:'葉片在陽光下製造養分的過程叫？', opts:['呼吸作用','蒸騰作用','光合作用','發芽'], ans:2, explain:'光合作用利用陽光、水與二氧化碳製造養分。'},
+      {q:'種子發芽不需要？', opts:['水','空氣','適宜的溫度','陽光'], ans:3, explain:'發芽需要水、空氣與適宜溫度；陽光是在長出葉片後才需要的。'},
+      {q:'植物開花之後通常會形成？', opts:['根莖','果實與種子','子葉','胚根'], ans:1, explain:'花授粉後發育成果實，果實裡面是種子。'},
+      {q:'植物生長從種子開始，正確順序是？', opts:['發芽→幼苗→成株→開花結果','幼苗→發芽→成株→結果','成株→發芽→幼苗→開花','開花→發芽→幼苗→成株'], ans:0, explain:'正確順序：種子 → 發芽 → 幼苗 → 生長成株 → 開花結果。'},
+      {q:'下列哪一種不是植物的部分？', opts:['根','莖','葉','石頭'], ans:3, explain:'石頭不是植物的部分。'},
+      {q:'果實對植物有什麼幫助？', opts:['製造養分','保護種子並幫助散播','吸收陽光','固定植株'], ans:1, explain:'果實保護種子，並幫助種子散播到新地方。'}
+    ],
+    [ // unit2 力
+      {q:'下列哪一個動作屬於「拉」？', opts:['推開門','踢球','拉抽屜','擠壓橡皮擦'], ans:2, explain:'拉抽屜是將抽屜拉向自己，屬於「拉」。'},
+      {q:'力可以改變物體的？', opts:['只能改變運動','只能改變形狀','運動狀態與形狀都可以改變','都不能改變'], ans:2, explain:'力既可以改變物體的運動（讓它動起來、變快、停止），也可以改變形狀（擠壓、拉伸）。'},
+      {q:'下列哪一個是「非接觸力」？', opts:['推桌子','拉繩子','摩擦力','磁鐵吸鐵釘'], ans:3, explain:'磁力不需要接觸就能吸引鐵釘，屬於非接觸力。'},
+      {q:'兩個磁鐵的 N 極靠近 N 極，會？', opts:['相吸','相斥','沒有反應','先吸後斥'], ans:1, explain:'同極相斥、異極相吸（N-N 相斥）。'},
+      {q:'踢球讓靜止的球動起來，這是力的哪種效果？', opts:['改變形狀','改變運動狀態','沒有效果','改變顏色'], ans:1, explain:'力讓靜止物體動起來，屬於改變運動狀態。'},
+      {q:'下列哪一個不是接觸力？', opts:['推','拉','摩擦力','重力'], ans:3, explain:'重力不需要接觸，屬於非接觸力。'},
+      {q:'摩擦力會？', opts:['讓物體更容易移動','阻礙物體運動','讓物體變輕','讓物體發光'], ans:1, explain:'摩擦力會阻礙或減慢物體的運動。'},
+      {q:'擠壓橡皮擦，橡皮擦變扁，這是力？', opts:['改變運動','改變形狀','沒有效果','改變顏色'], ans:1, explain:'力改變了橡皮擦的形狀。'}
+    ],
+    [ // unit3 空氣
+      {q:'下列哪個實驗可以證明「空氣佔有空間」？', opts:['充滿空氣的氣球讓天平偏低','倒扣紙杯進水，紙不濕','吸管喝飲料','蠟燭罩玻璃杯熄滅'], ans:1, explain:'倒扣紙杯進水，杯內空氣阻擋水進入，紙不會濕，證明空氣佔有空間。'},
+      {q:'空氣有重量，可以用什麼簡單實驗證明？', opts:['吸盤吸桌面','充滿空氣的氣球放在天平一端','倒扣紙杯','蠟燭燃燒'], ans:1, explain:'天平兩端平衡，將氣球充滿空氣後該邊下降，證明空氣有重量。'},
+      {q:'吸管喝飲料時，飲料被推進吸管，是因為？', opts:['空氣佔有空間','空氣有壓力','空氣沒有重量','空氣可見'], ans:1, explain:'吸管內外空氣壓力差，外部大氣壓力把飲料推進吸管。'},
+      {q:'燃燒需要？', opts:['二氧化碳','氮氣','氧氣','水蒸氣'], ans:2, explain:'燃燒需要氧氣支持。'},
+      {q:'蠟燭罩上玻璃杯後熄滅，是因為？', opts:['空氣沒了','氧氣耗盡','溫度太低','壓力太大'], ans:1, explain:'杯內氧氣被用完，蠟燭無法繼續燃燒而熄滅。'},
+      {q:'人類呼吸會？', opts:['吸入氧氣、呼出二氧化碳','吸入二氧化碳、呼出氧氣','只吸入氧氣','只呼出二氧化碳'], ans:0, explain:'人類吸入氧氣、呼出二氧化碳。'},
+      {q:'植物光合作用會？', opts:['吸入氧氣、呼出二氧化碳','吸收二氧化碳、釋出氧氣','不需要陽光','只在夜間進行'], ans:1, explain:'植物在陽光下透過光合作用吸收二氧化碳、釋出氧氣。'},
+      {q:'下列哪一種氣體不是空氣的主要成分？', opts:['氮氣','氧氣','二氧化碳','氦氣'], ans:3, explain:'空氣主要成分是氮氣、氧氣，少量二氧化碳等；氦氣不是主要成分。'}
+    ],
+    [ // unit4 廚房科學
+      {q:'下列哪一種是「固體」？', opts:['水','水蒸氣','冰塊','醬油'], ans:2, explain:'冰塊有固定形狀與體積，屬於固體。'},
+      {q:'冰塊變成水，這種狀態變化叫？', opts:['凝固','融化','汽化','液化'], ans:1, explain:'固體變液體叫融化（吸熱）。'},
+      {q:'水在 100℃ 會？', opts:['結冰','沸騰','凝結','升華'], ans:1, explain:'水在標準大氣壓下於 100℃ 沸騰。'},
+      {q:'水蒸氣遇冷變成小水滴，這種變化叫？', opts:['蒸發','凝結','融化','凝固'], ans:1, explain:'氣體變液體叫液化（凝結）。'},
+      {q:'鹽混在蒜頭裡，適合用什麼方法分離？', opts:['磁選','篩選','蒸發','過濾'], ans:1, explain:'鹽晶與蒜頭塊大小不同，可用篩子篩選分開。'},
+      {q:'鐵屑混在麵粉中，適合用什麼方法分離？', opts:['篩選','磁選','蒸發','過濾'], ans:1, explain:'磁鐵可以吸出鐵屑，屬於磁選。'},
+      {q:'下列哪一種具有酸性？', opts:['小蘇打水','肥皂水','檸檬汁','純水'], ans:2, explain:'檸檬汁含有檸檬酸，具有酸性。'},
+      {q:'水的冰點是？', opts:['0℃','100℃','50℃','37℃'], ans:0, explain:'水在標準大氣壓下於 0℃ 結冰。'}
+    ]
+  ];
+
+  function renderQuiz(ui, qs){
+    var html = '';
+    qs.forEach(function(q, i){
+      var name = 'q'+ui+'_'+i;
+      var optsHtml = '';
+      q.opts.forEach(function(opt, j){
+        optsHtml += '<label><input type="radio" name="'+name+'" value="'+j+'"> '+String.fromCharCode(65+j)+'. '+opt+'</label>';
+      });
+      html += '<div class="qcard"><div class="q">'+(i+1)+'. '+q.q+'</div>'+optsHtml+'<div class="feedback" id="fb'+ui+'_'+i+'"></div></div>';
+    });
+    html += '<button class="btn" onclick="checkQuiz('+ui+')">檢查我的答案</button> <button class="btn secondary" onclick="resetQuiz('+ui+')">重做</button> <div class="scorebox" id="scorebox'+ui+'"></div>';
+    return html;
+  }
+
+  window.checkQuiz = function(ui){
+    var qs = QUIZZES[ui];
+    var score = 0;
+    qs.forEach(function(q, i){
+      var name = 'q'+ui+'_'+i;
+      var radios = document.getElementsByName(name);
+      var sel = -1;
+      for(var r=0; r<radios.length; r++){ if(radios[r].checked) sel = parseInt(radios[r].value); }
+      var fb = document.getElementById('fb'+ui+'_'+i);
+      if(sel === q.ans){
+        score++;
+        fb.textContent = '✅ 正確！'+q.explain;
+        fb.className = 'feedback ok';
+      } else if(sel === -1){
+        fb.textContent = '⚠️ 未作答。正確答案：'+String.fromCharCode(65+q.ans)+'。'+q.explain;
+        fb.className = 'feedback bad';
+      } else {
+        fb.textContent = '❌ 不正確。正確答案：'+String.fromCharCode(65+q.ans)+'。'+q.explain;
+        fb.className = 'feedback bad';
+      }
+      for(var r=0; r<radios.length; r++){ radios[r].disabled = true; }
+    });
+    var box = document.getElementById('scorebox'+ui);
+    var extra = (score === qs.length) ? ' （滿分！完全學會：）🎉' : '';
+    box.textContent = '你的得分：'+score+' / '+qs.length + extra;
+    localStorage.setItem('score_u'+(ui+1), score+'/'+qs.length);
+    refreshHomeScores();
+  };
+  window.resetQuiz = function(ui){
+    var qs = QUIZZES[ui];
+    qs.forEach(function(q, i){
+      var name = 'q'+ui+'_'+i;
+      var radios = document.getElementsByName(name);
+      for(var r=0; r<radios.length; r++){ radios[r].checked = false; radios[r].disabled = false; }
+      var fb = document.getElementById('fb'+ui+'_'+i);
+      if(fb){ fb.textContent=''; fb.className='feedback'; }
+    });
+    var box = document.getElementById('scorebox'+ui);
+    if(box) box.textContent='';
+    localStorage.removeItem('score_u'+(ui+1));
+    refreshHomeScores();
+  };
+
+  function refreshHomeScores(){
+    var el = document.getElementById('home-scores');
+    if(!el) return;
+    var parts = [];
+    for(var i=1; i<=4; i++){
+      var s = localStorage.getItem('score_u'+i);
+      parts.push('單元'+i + (s ? '：'+s : '：尚未測驗'));
+    }
+    el.textContent = parts.join('   │   ');
+  }
+
+  /* 初始化測驗內容 */
+  ['u1quiz','u2quiz','u3quiz','u4quiz'].forEach(function(id, i){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = renderQuiz(i, QUIZZES[i]);
+  });
+
+  /* 拖放期待值註冊 */
+  DD['u1r1'] = { expects: { u1z1:['u1a1','u1a2'], u1z2:['u1a3','u1a4'] } };
+  DD['u1r2'] = { expects: { u1z3:'u1b1', u1z4:'u1b2', u1z5:'u1b3', u1z6:'u1b4' } };
+  SORT['u1r3'] = ['u1s3','u1s2','u1s5','u1s4','u1s1']; // 種子, 發芽, 幼苗, 成株, 開花結果
+
+  DD['u2r1'] = { expects: { u2z1:['u2a1','u2a3'], u2z2:['u2a2','u2a4'] } };
+  DD['u2r2'] = { expects: { u2z3:['u2b1','u2b3'], u2z4:['u2b2','u2b4'] } };
+  SORT['u2r3'] = ['u2s2','u2s3','u2s1']; // 踢球, 接球, 擠壓橡皮擦（參考順序）
+
+  DD['u3r1'] = { expects: { u3z1:'u3a1', u3z2:'u3a2', u3z3:'u3a3' } };
+  DD['u3r2'] = { expects: { u3z4:'u3b1', u3z5:'u3b2', u3z6:'u3b3' } };
+
+  DD['u4r1'] = { expects: { u4z1:'u4a1', u4z2:['u4a2','u4a4'], u4z3:'u4a3' } };
+  DD['u4r2'] = { expects: { u4z4:'u4b1', u4z5:'u4b2', u4z6:'u4b3' } };
+  DD['u4r3'] = { expects: { u4z7:'u4c1', u4z8:'u4c2', u4z9:'u4c3' } };
+
+  refreshHomeScores();
+})();
+</script>
+</body>
+</html>
